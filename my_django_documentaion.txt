@@ -1,0 +1,97 @@
+================================HEY THIS IS MY DJANGO  DOCUMENTATION FOR THIS APP=========================
+
+1. FIRST OF ALL OPEN POWERSHELL AND GOTO YOR PROJECT DIRECTORY
+2. THEN CREATE A VIRTUAL ENVIROMENT WITH THESE COMMANDS BELLOW:=
+     A. PIP INSTALL VIRTUALENV
+     B. VIRTUALENV YOUR_ENV_NAME  --> IT WILL CREATE A FILE WITH YOUR_ENV_NAME
+     C. ./YOUR_ENV_NAME/Scripts/activate --> TO ACTIVATE THE ENVIRONENT
+     D. NOW CHECK WITH PIP FREEZE
+     E. IF FREEZE RETURNS NOTHING THEN ITS GOOD OTHERWISE ENV NOT INITIALIZED
+
+     WE NEED TO WORK ON ENVIRONMENT BECAUSE IT WILL NOT EFFECT THE DEPENDENCIES OF OTHER PROJECTS
+
+     EX: LIKE MY 1 PROJECT NEED DJANGO V.0  WHILE 2ND PROJECT NEED DJANGO V5 INSTALLED THEN
+         WITH THIS REQUIREMENTS IF I WORK ON MY LOCALHOST THEN IT WILL CREATE DEPENDENCY ERROR
+         SO TO AVOID THESE CONFLICTS WE USE VIRTUALENV . SPECIFIC DEPENDENCIES FOR SPECIFIC PROJECTS 
+
+3. ONCE ENV IS RUNNING THEN INSTALL DJANGO --> PIP INSTALL DJANGO
+4. THEN CHECK PIP FREEZE IF DJANGO INSTALLED
+5. THEN CREATE A DJANGO PROJECT WITH  ---> Django-admin startproject YOUR_project_NAME
+6. THEN USING POWERSHELL GOTO YOUR_project_NAME --> CD YOUR_project_NAME
+7. THEN RUNSERVER WITH ---> PYTHON MANAGE.PY RUNSERVER
+8. IF SERVER RUNS THEN WE ARE GOOD TO GO
+9. THEN INSTALL DJANGO CORS HEADERS :=
+     A. pip install django-cors-headers
+     B. IN THE PROJECT SETTINGS.PY IN INSTALLED_APPS ADD THIS ALSO = [
+         'corsheaders',
+         ]
+     C.SAME AS (B) ADD THIS IN SETTINGS.PY
+          MIDDLEWARE = [
+            ...,
+            'corsheaders.middleware.CorsMiddleware',
+            'django.middleware.common.CommonMiddleware',
+            ...,
+             ]
+
+     Django is a Python web framework that allows rapid web application development. 
+     Apps developed in Django may need to interact with other applications hosted on 
+     different domains (or even just different ports). For these requests to succeed, 
+     you’ll need to use cross-origin resource sharing (CORS) in your server.
+
+     FOR EX. In order to illustrate how CORS works, let’s assume you have a web application 
+     that lives in domain.com. But, to save user information, the app calls an API hosted in 
+     another URL—for example, api.domain.com. So, when a request to save data is sent to api.domain.com, 
+     the server evaluates the requests based on its headers and the request’s source.
+
+10. NOW THEN ISTALL DJANGO_REST_FRAMEWORK TO WORK WITH APIs:=
+     A. pip install djangorestframework
+     B. IN THE PROJECT SETTINGS.PY IN INSTALLED_APPS ADD THIS ALSO =
+        ['rest_framework',
+         'rest_framework.authtoken',
+        ]
+     C. IN PROJECT URLS.PY ADD THIS urlpatterns = [
+        path('api-auth/', include('rest_framework.urls'))
+        ]
+     D. REST_FRAMEWORK = {
+          # Use Django's standard `django.contrib.auth` permissions,
+          # or allow read-only access for unauthenticated users.
+          'DEFAULT_PERMISSION_CLASSES': [
+         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+          ]
+        }
+
+     E. REST_FRAMEWORK = {
+            'DEFAULT_AUTHENTICATION_CLASSES': [
+                'rest_framework.authentication.BasicAuthentication',
+                'rest_framework.authentication.SessionAuthentication',
+                'rest_framework.authentication.TokenAuthentication',  // MANUALLY ADDED
+                 //BECAUSE WE ARE GOING TO USE CSTOM LOGIN AUTHENTICATION NOT DJANGOS 
+            ]
+        }
+
+11. NOW LETS CHECK IF SERVER IS RUNNING BUT PAGE GIVING ERROR !!!DONT WORRY ITS FNE DUDE
+12. NOW LETS ADD STATIC/MEDIA FOLDER TO STORE IMAGES,MPS,VIDEOS ETC. SO THAT WE CAN ACCESS IT PUBLICALLY
+    LIKE WE USE CDN IN BOOTSTRAP ..CDN JUST LOADS THE FILE STORED IN SERVER PUBLICALLY
+     
+     A. make a new folder inside project root -->media
+     B. IN SETTINGS.PY ADD:=
+        a. MEDIA_URL= '/media/'
+        b. MEDIA_ROOT= os.path.join(BASE_DIR, 'media')
+        c. in projects urls.py add this 
+            from django.conf.urls.static import static
+
+            from django.conf import settings
+
+            urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
+
+13. IMPLEMENTING [ CATEGORY ] SECTION TO WORK:===
+
+     A.  CREATE MODEL
+     B.  REGISTER IN ADMIN
+     C.  CREATE serializers.py FILE TO SERIALIZE DATA INTO JSON 
+     D.  VIEWS TO ALL CATEGORY (IMPLEMEMNT VIEWS.PY)
+     E.  IMPLEMENT URLS.PY TO ROUTE THE URLS
+
+     
