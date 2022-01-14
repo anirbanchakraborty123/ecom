@@ -10,8 +10,6 @@ class ProductSerializer(serializers.HyperlinkedModelSerializer):
             allow_empty_file=False,allow_null=True,required=False)
     
     
-    
-    
     #to show the category name instead of category url in json response
     category= serializers.ReadOnlyField(source='category.name')    
 
