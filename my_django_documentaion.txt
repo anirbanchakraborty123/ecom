@@ -14,7 +14,13 @@
          WITH THIS REQUIREMENTS IF I WORK ON MY LOCALHOST THEN IT WILL CREATE DEPENDENCY ERROR
          SO TO AVOID THESE CONFLICTS WE USE VIRTUALENV . SPECIFIC DEPENDENCIES FOR SPECIFIC PROJECTS 
 
-3. ONCE ENV IS RUNNING THEN INSTALL DJANGO --> PIP INSTALL DJANGO
+TIP: When you're ready to deploy the application to other computers, you can create a requirements.txt file with
+the command pip freeze > requirements.txt (pip3 on macOS/Linux). The requirements file describes the packages you've 
+installed in your virtual environment. With only this file, you or other developers can restore those packages using 
+pip install -r requirements.txt (or, again, pip3 on macOS/Linux). By using a requirements file, you need not commit 
+the virtual environment itself to source control.
+
+3. ONCE ENV IS RUNNING THEN INSTALL DJANGO --> PIP INSTALL DJANGO OR PIP INSTALL DJANGO==version_name
 4. THEN CHECK PIP FREEZE IF DJANGO INSTALLED
 5. THEN CREATE A DJANGO PROJECT WITH  ---> Django-admin startproject YOUR_project_NAME
 6. THEN USING POWERSHELL GOTO YOUR_project_NAME --> CD YOUR_project_NAME
